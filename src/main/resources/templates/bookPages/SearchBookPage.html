@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Book</title>
+    <link rel="stylesheet" href="../../styles/StyleSearchBookPage.css" />
+</head>
+<body>
+<header class="header">
+    <div class="container-header">
+        <div class="logo">
+            <a href="/MainPage">
+                <img src="../../images/warm-tavern-logo.svg" alt="warm tavern logo"
+                     class="logo-img" width="94" height="94">
+            </a>
+            <div class="logo-text">Warm Tavern</div>
+        </div>
+        <div class="navbar">
+            <ul class="navbar-menu-one">
+                <li class="menu-item btn">
+                    <a href="/SearchBook" class="menu-link">Search book</a>
+                </li>
+                <li class="menu-item btn">
+                    <a href="/AdminPage" class="menu-link">Admin page</a>
+                </li>
+            </ul>
+<!--            <ul class="navbar-menu-two">-->
+<!--                <li class="menu-item btn">-->
+<!--                    <a href="/RegPage" class="menu-link">Sign Up</a>-->
+<!--                </li>-->
+<!--                <li class="menu-item btn">-->
+<!--                    <a href="/AuthPage" class="menu-link">Sign In</a>-->
+<!--                </li>-->
+<!--                <li class="menu-item btn">-->
+<!--                    <a href="/ProfilePage" class="menu-link">Profile</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+        </div>
+    </div>
+</header>
+    <main class="main">
+        <section class="search-book">
+            <section class="filter-panel">
+                <form class="filter-form" method="post" th:object="${book}">
+                    <h2 class="h2-genre-filter">Выберете жанр?</h2>
+                    <textarea rows="1" class="textarea-genre"></textarea>
+                    <ul class="filter-genre">
+                        <li th:each="genre : ${genres}"
+                            class="genre-element genre-element-text"
+                            onclick="clickGenre(this)"
+                            th:title="${genre.getId()}">
+                            <div class="genre-element" th:text="${genre.getName()}"></div>
+                        </li>
+                    </ul>
+                    <div class="result-genre-select"></div>
+                    <h2 class="h2-author-filter">Выберете автора?</h2>
+                    <textarea rows="1" class="textarea-author"></textarea>
+                    <ul class="filter-author">
+                        <li th:each="author : ${authors}"
+                            class="author-element author-element-text"
+                            onclick="clickAuthor(this)"
+                            th:title="${author.getId()}">
+                            <div class="author-element"
+                                 th:text="${author.getAuthor_first_name() + ' ' +
+                                 author.getAuthor_last_name() + ' ' +
+                                 author.getAuthor_middle_name()}"
+                            ></div>
+                        </li>
+                    </ul>
+                    <div class="result-author-select"></div>
+                    <h2 class="h2-voices-filter">Выберете чтеца?</h2>
+                    <textarea rows="1" class="textarea-voices"></textarea>
+                    <ul class="filter-voices">
+                        <li th:each="voice : ${voices}"
+                            class="voices-element voices-element-text"
+                            onclick="clickVoice(this)"
+                            th:title="${voice.getId()}">
+                            <div class="voice-element"
+                                th:text="${voice.getVoice_first_name() + ' ' +
+                                voice.getVoice_last_name() + ' ' +
+                                voice.getVoice_middle_name()}">
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="result-voice-select"></div>
+                    <h2 class="h2-voices-filter">Введите название книги?</h2>
+                    <input type="text" class="input-book" name="bookName"></br>
+                    <h2 class="h2-voices-filter">Введите описание книги?</h2>
+                    <input type="text" class="input-caption" name="bookCaption">
+                    <div class="result-select-input"></div></br>
+                    <button class="btn">Найти книгу</button>
+                </form>
+            </section>
+            <section class="card-panel">
+                <ul  class="list-card-book">
+                    <li th:each="book : ${books}" class="card-book">
+                        <a th:href="/cardBook/${book.getId()}" class="card-avatar-link">
+                            <div class="card-book-avatar">
+                                <img th:src="${book.getBookCoverPath()}"
+                                alt="example" class="img-avatar">
+                            </div>
+                            <div th:text="${book.getBookName()}" class="card-book-info"></div>
+                        </a>
+                        <div th:each="author : ${book.getAuthors()}">
+                                <span class="card-book-info" th:text="${author.getAuthor_first_name() + ' ' +
+                                author.getAuthor_last_name() + ' ' +
+                                author.getAuthor_middle_name()} + ' '"></span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </section>
+    </main>
+    <script src="./javaScripts/ScriptSearchBookPage.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Page</title>
+    <link rel="stylesheet" href="../../styles/StyleAuthPage.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="container-header">
+            <div class="logo">
+                <a href="/MainPage">
+                    <img src="../../images/warm-tavern-logo.svg" alt="warm tavern logo"
+                         class="logo-img" width="94" height="94">
+                </a>
+                <div class="logo-text">Warm Tavern</div>
+            </div>
+            <div class="navbar">
+                <ul class="navbar-menu-one">
+                    <li class="menu-item btn">
+                        <a href="/SearchBook" class="menu-link">Search book</a>
+                    </li>
+                    <li class="menu-item btn">
+                        <a href="/AdminPage" class="menu-link">Admin page</a>
+                    </li>
+                </ul>
+                <ul class="navbar-menu-two">
+                    <li class="menu-item btn">
+                        <a href="/RegPage" class="menu-link">Sign Up</a>
+                    </li>
+                    <li class="menu-item btn">
+                        <a href="/AuthPage" class="menu-link">Sign In</a>
+                    </li>
+                    <li class="menu-item btn">
+                        <a href="/ProfilePage" class="menu-link">Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+            <section class="Auth-panel">
+                <div class="logo">
+                    <img src="../../images/warm-tavern-logo.svg" alt="warm tavern logo" 
+                    class="logo-img" width="94" height="94">
+                    <div class="logo-text">Warm Tavern</div>
+                </div>
+                <form action="/" class="Auto-form">
+                    <h2 class="Auth-section">
+                        Please input your email
+                    </h2>
+                    <div>
+                        <input type="text" class="input-auth" name="input-auth-email">
+                    </div>
+                    <h2 class="Auth-section">
+                        Please input your password
+                    </h2>
+                    <div>
+                        <input type="text" class="input-auth" name="input-auth-password">
+                    </div>
+                    <a href="/ResetPage" class="link-reset">Have you forgotten your password?</a>
+                    <div class="btn-form">
+                        <button class="btn-auth-book btn">Sign Up</button>
+                    </div>
+                </form>
+            </section>
+        </section>
+    </main>
+
+</body>
+</html>

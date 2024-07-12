@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Page</title>
+    <link rel="stylesheet" href="../../styles/StyleCardPage.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="container-header">
+            <div class="logo">
+                <a href="/MainPage">
+                    <img src="../../images/warm-tavern-logo.svg" alt="warm tavern logo"
+                         class="logo-img" width="94" height="94">
+                </a>
+                <div class="logo-text">Warm Tavern</div>
+            </div>
+            <div class="navbar">
+                <ul class="navbar-menu-one">
+                    <li class="menu-item btn">
+                        <a href="/SearchBook" class="menu-link">Search book</a>
+                    </li>
+                    <li class="menu-item btn">
+                        <a href="/AdminPage" class="menu-link">Admin page</a>
+                    </li>
+                </ul>
+                <ul class="navbar-menu-two">
+                    <li class="menu-item btn">
+                        <a href="/RegPage" class="menu-link">Sign Up</a>
+                    </li>
+                    <li class="menu-item btn">
+                        <a href="/AuthPage" class="menu-link">Sign In</a>
+                    </li>
+                    <li class="menu-item btn">
+                        <a href="/ProfilePage" class="menu-link">Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <section class="book-section">
+            <div class="container-book-section">
+                <div class="book-info">
+                    <div class="card-avatar-link">
+                        <div class="card-book-avatar">
+                            <img src="../../images/exampleAvatar2.png" 
+                            alt="example" class="img-avatar">
+                        </div>
+                        <div class="card-book-info">
+                            name book <br>avatar book
+                        </div>
+                    </div>
+                    <div class="book-caption">
+                        <span class="name-book p-caption-book">name book</span>
+                        <span class="avtor-book p-caption-book">avtor book</span>
+                        <span class="genre-book p-caption-book">fantasy</span>
+                        <span class="voice-book p-caption-book">oleg buglkov</span>
+                        <span class="caption-book p-caption-book">
+                            caption caption caption caption caption caption caption
+                            caption caption caption caption caption caption caption
+                            caption caption caption caption caption caption caption
+                            caption caption caption caption caption caption caption
+                        </span>
+                    </div>
+                </div>
+                <div class="book-player">
+                    <audio controls="controls">
+                        <source src="track.ogg" type="audio/ogg" />
+                        <source src="track.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <a href="/" class="button-save-book">
+                        <img src="../../icons/BookSave.svg" alt="save book" class="img-button">
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="comment-section">
+            <h2 class="h2-comment-section">Comments</h2>
+            <ul class="list-comment-section">
+                <li class="comment">
+                    <div class="card-book">
+                        <a href="/" class="card-avatar-link">
+                            <div class="card-book-avatar card-book-comment">
+                                <img src="../../images/exampleAvatar2.png" 
+                                alt="example" class="img-avatar">
+                            </div>
+                            <div class="card-book-info card-book-info-comment">
+                                name book <br>avatar book
+                            </div>
+                        </a>
+                    </div>
+                    <div class="comment-body">
+                        <div class="comment-info">
+                            <img src="../../icons/user-avatar.png" 
+                            alt="user-avatar-comment" class="avatar-user">
+                            <span class="name-user">Random chel</span>
+                            <span class="date-comment">12.23.32 in 12:33</span>
+                        </div>
+                        <p class="text-comment">
+                            norm book
+                        </p>
+                    </div>
+                </li>
+                <li class="comment">
+                    <div class="card-book">
+                        <a href="/" class="card-avatar-link">
+                            <div class="card-book-avatar card-book-comment">
+                                <img src="../../images/exampleAvatar2.png" 
+                                alt="example" class="img-avatar">
+                            </div>
+                            <div class="card-book-info card-book-info-comment">
+                                name book <br>avatar book
+                            </div>
+                        </a>
+                    </div>
+                    <div class="comment-body">
+                        <div class="comment-info">
+                            <img src="../../icons/user-avatar.png" 
+                            alt="user-avatar-comment" class="avatar-user">
+                            <span class="name-user">Random chel</span>
+                            <span class="date-comment">12.23.32 in 12:33</span>
+                        </div>
+                        <p class="text-comment">
+                            norm book
+                        </p>
+                    </div>
+                </li>
+                <li class="comment">
+                    <div class="card-book">
+                        <a href="/" class="card-avatar-link">
+                            <div class="card-book-avatar card-book-comment">
+                                <img src="../../images/exampleAvatar2.png" 
+                                alt="example" class="img-avatar">
+                            </div>
+                            <div class="card-book-info card-book-info-comment">
+                                name book <br>avatar book
+                            </div>
+                        </a>
+                    </div>
+                    <div class="comment-body">
+                        <div class="comment-info">
+                            <img src="../../icons/user-avatar.png" 
+                            alt="user-avatar-comment" class="avatar-user">
+                            <span class="name-user">Random chel</span>
+                            <span class="date-comment">12.23.32 in 12:33</span>
+                        </div>
+                        <p class="text-comment">
+                            norm book
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+</body>
+</html>

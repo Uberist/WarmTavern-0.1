@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="../styles/StyleMainPage.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="container-header">
+            <div class="logo">
+                <a href="/MainPage">
+                    <img src="../../images/warm-tavern-logo.svg" alt="warm tavern logo"
+                         class="logo-img" width="94" height="94">
+                </a>
+                <div class="logo-text">Warm Tavern</div>
+            </div>
+            <div class="navbar">
+                <ul class="navbar-menu-one">
+                    <li class="menu-item btn">
+                        <a href="/SearchBook" class="menu-link">Search book</a>
+                    </li>
+                    <li class="menu-item btn">
+                        <a href="/AdminPage" class="menu-link">Admin page</a>
+                    </li>
+                </ul>
+<!--                <ul class="navbar-menu-two">-->
+<!--                    <li class="menu-item btn">-->
+<!--                        <a href="/RegPage" class="menu-link">Sign Up</a>-->
+<!--                    </li>-->
+<!--                    <li class="menu-item btn">-->
+<!--                        <a href="/AuthPage" class="menu-link">Sign In</a>-->
+<!--                    </li>-->
+<!--                    <li class="menu-item btn">-->
+<!--                        <a href="/ProfilePage" class="menu-link">Profile</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <section class="new-selection">
+            <p class="text-welcome">
+                Добро пожаловать в «Warm Tavern»!
+
+                Рады приветствовать вас в нашей уютной онлайн-библиотеке, где каждая книга найдет своего читателя, а каждый гость — свою любимую историю. Вас ждут тысячи книг на любой вкус и интерес: от классической литературы до современных бестселлеров, от научных трудов до захватывающих детективных романов.
+
+                Разместитесь поудобнее, откройте цифровую страницу и погрузитесь в мир знаний и приключений. Если вы ищете конкретную книгу или просто хотите исследовать новые жанры, наш удобный поиск и рекомендации помогут вам найти именно то, что нужно.
+
+                Наши двери всегда открыты для вас — заходите, читайте, наслаждайтесь!
+
+                С теплотой и вдохновением,
+                Команда «Warm Tavern»
+            </p>
+            <div class="new-selection-list">
+                <ul class="list-selection">
+                    <li class="card-book" th:each="book : ${books}">
+                        <a href="/" class="card-avatar-link">
+                            <div class="card-book-avatar">
+                                <img th:src="${book.getBookCoverPath()}"
+                                alt="example" class="img-avatar">
+                            </div>
+                            <div th:text="${book.getBookName()}" class="card-book-info">
+                                Title
+                            </div>
+                            <div th:each="author : ${book.getAuthors()}" class="card-book-info">
+                                <div th:text="${author.getAuthor_first_name() + ' '
+                                 + author.getAuthor_last_name() + ' '
+                                 + author.getAuthor_middle_name()} + ' '"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <h2 class="h2-new-selection"> Последние обновления</h2>
+        </section>
+        <section class="last-comment">
+<!--            <h2 class="h2-last-comment">Последние комментарии</h2>-->
+            <!-- <ul class="list-last-comment">
+                <li class="comment">
+                    <div class="card-book">
+                        <a href="/" class="card-avatar-link">
+                            <div class="card-book-avatar card-book-comment">
+                                <img src="../images/exampleAvatar2.png" 
+                                alt="example" class="img-avatar">
+                            </div>
+                            <div class="card-book-info card-book-info-comment">
+                                name book <br>avatar book
+                            </div>
+                        </a>
+                    </div>
+                    <div class="comment-body">
+                        <div class="comment-info">
+                            <img src="../icons/user-avatar.png" 
+                            alt="user-avatar-comment" class="avatar-user">
+                            <span class="name-user">Random chel</span>
+                            <span class="date-comment">12.23.32 in 12:33</span>
+                        </div>
+                        <p class="text-comment">
+                            norm book
+                        </p>
+                    </div>
+                </li>
+                <li class="comment">
+                    <div class="card-book">
+                        <a href="/" class="card-avatar-link">
+                            <div class="card-book-avatar card-book-comment">
+                                <img src="../images/exampleAvatar2.png" 
+                                alt="example" class="img-avatar">
+                            </div>
+                            <div class="card-book-info card-book-info-comment">
+                                name book <br>avatar book
+                            </div>
+                        </a>
+                    </div>
+                    <div class="comment-body">
+                        <div class="comment-info">
+                            <img src="../icons/user-avatar.png" 
+                            alt="user-avatar-comment" class="avatar-user">
+                            <span class="name-user">Random chel</span>
+                            <span class="date-comment">12.23.32 in 12:33</span>
+                        </div>
+                        <p class="text-comment">
+                            norm book
+                        </p>
+                    </div>
+                </li>
+                <li class="comment">
+                    <div class="card-book">
+                        <a href="/" class="card-avatar-link">
+                            <div class="card-book-avatar card-book-comment">
+                                <img src="../images/exampleAvatar2.png" 
+                                alt="example" class="img-avatar">
+                            </div>
+                            <div class="card-book-info card-book-info-comment">
+                                name book <br>avatar book
+                            </div>
+                        </a>
+                    </div>
+                    <div class="comment-body">
+                        <div class="comment-info">
+                            <img src="../icons/user-avatar.png" 
+                            alt="user-avatar-comment" class="avatar-user">
+                            <span class="name-user">Random chel</span>
+                            <span class="date-comment">12.23.32 in 12:33</span>
+                        </div>
+                        <p class="text-comment">
+                            norm book
+                        </p>
+                    </div>
+                </li>
+            </ul>-->
+        </section>
+    </main>
+
+</body>
+</html>

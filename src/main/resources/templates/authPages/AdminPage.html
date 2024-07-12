@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="../../styles/StyleAdminPage.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="container-header">
+            <div class="logo">
+                <a href="/MainPage">
+                    <img src="../../images/warm-tavern-logo.svg" alt="warm tavern logo"
+                    class="logo-img" width="94" height="94">
+                </a>
+                <div class="logo-text">Warm Tavern</div>
+            </div>
+            <div class="navbar">
+                <ul class="navbar-menu-one">
+                    <li class="menu-item btn">
+                        <a href="/SearchBook" class="menu-link">Search book</a>
+                    </li>
+                    <li class="menu-item btn">
+                        <a href="/AdminPage" class="menu-link">Admin page</a>
+                    </li>
+                </ul>
+<!--                <ul class="navbar-menu-two">-->
+<!--                    <li class="menu-item btn">-->
+<!--                        <a href="/RegPage" class="menu-link">Sign Up</a>-->
+<!--                    </li>-->
+<!--                    <li class="menu-item btn">-->
+<!--                        <a href="/AuthPage" class="menu-link">Sign In</a>-->
+<!--                    </li>-->
+<!--                    <li class="menu-item btn">-->
+<!--                        <a href="/ProfilePage" class="menu-link">Profile</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <section class="search-book">
+            <section class="filter-panel">
+                <form method="post" th:object="${book}" class="filter-form" enctype="multipart/form-data">
+                    <div class="one-row-filter">
+                        <div class="genre-filter input-filter">
+                            <h2 class="filter-section">Выберете жанр книги?</h2>
+                            <textarea type="text" class="genre-input filter-section" rows="1"></textarea>
+                            <div class="elastic-genre">
+                                <div class="elastic-el" th:each="genre : ${genres}"
+                                    th:text="${genre.getName()}" th:title="${genre.getId()}"
+                                    onclick="selectGenre(this)">
+                                </div>
+                            </div>
+                            <ul class="select-genre"></ul>
+                        </div>
+                        <div class="author-filter input-filter">
+                            <h2 class="filter-section">Выберете автора книги?</h2>
+                            <textarea type="text" class="author-input filter-section" rows="1"></textarea>
+                            <div class="elastic-author">
+                                <div class="elastic-el" th:each="author : ${authors}"
+                                     th:text="${
+                                     author.getAuthor_first_name() + ' ' +
+                                     author.getAuthor_last_name() + ' ' +
+                                     author.getAuthor_middle_name()}"
+                                     th:title="${author.getId()}"
+                                     onclick="selectAuthor(this)">
+                                </div>
+                            </div>
+                            <ul class="select-author"></ul>
+                        </div>
+                        <div class="voice-filter input-filter">
+                            <h2 class="filter-section">Выберете чтеца книги?</h2>
+                            <textarea type="text" class="voice-input filter-section" rows="1"></textarea>
+                            <div class="elastic-voice">
+                                <div class="elastic-el" th:each="voice : ${voices}"
+                                    th:text="${
+                                    voice.getVoice_first_name() + ' ' +
+                                    voice.getVoice_last_name() + ' ' +
+                                    voice.getVoice_middle_name()}"
+                                    th:title="${voice.getId()}"
+                                    onclick="selectVoice(this)">
+                                </div>
+                            </div>
+                            <ul class="select-voice"></ul>
+                        </div>
+                        <div class="result"></div>
+                    </div>
+                    <div class="two-row-filter">
+                        <div class="title-filter input-filter">
+                            <h2 class="filter-section">Введите название книги?</h2>
+                            <input th:field="*{bookName}" type="text" class="title-input filter-section">
+                        </div>
+                        <div class="caption-filter input-filter ">
+                            <h2 class="filter-section">Введите описание книги?</h2>
+                            <input th:field="*{bookCaption}" type="text" class="caption-input filter-section">
+                        </div>
+                        <div class="caption-filter input-filter ">
+                            <h2 class="filter-section">Выбирете обложку для книги?</h2>
+                            <input type="file" name="file-avatar-book" class="caption-input filter-section">
+                        </div>
+                        <div class="caption-filter input-filter ">
+                            <h2 class="filter-section">Выбирите книгу?</h2>
+                            <input type="file" name="file-book" class="caption-input filter-section">
+                        </div>
+                    </div>
+                    <div class="btn-form">
+                        <button class="btn-find-book btn">Добавить книгу</button>
+                    </div>
+                </form>
+            </section>
+            <section class="filter-panel">
+                <form method="post" th:object="${genre}" class="filter-form"
+                      action="AdminPage/addGenre">
+                    <div class="one-row-filter">
+                        <div class="genre-filter input-filter">
+                            <h2 class="filter-section">Введите жанр?</h2>
+                            <input type="text" class="genre-input filter-section" th:field="*{Name}">
+                        </div>
+                    </div>
+                    <div class="btn-form">
+                        <button class="btn-find-book btn">Добавить жанр</button>
+                    </div>
+                </form>
+            </section>
+            <section class="filter-panel">
+                <form method="post" th:object="${author}" class="filter-form"
+                    action="AdminPage/addAuthor">
+                    <div class="one-row-filter">
+                        <div class="genre-filter input-filter">
+                            <h2 class="filter-section">Введите имя автора?</h2>
+                            <input type="text" class="genre-input filter-section"
+                                   th:field="*{author_first_name}">
+                        </div>
+                        <div class="author-filter input-filter">
+                            <h2 class="filter-section">Введите фамилию автора?</h2>
+                            <input type="text" class="author-input filter-section"
+                            th:field="*{author_last_name}">
+                        </div>
+                        <div class="voice-filter input-filter">
+                            <h2 class="filter-section">Введите отчество автора?</h2>
+                            <input type="text" class="voice-input filter-section"
+                            th:field="*{author_middle_name}">
+                        </div>
+                    </div>
+                    <div class="btn-form">
+                        <button class="btn-find-book btn">Добавить автора</button>
+                    </div>
+                </form>
+            </section>
+            <section class="filter-panel">
+                <form method="post" th:object="${voice}" class="filter-form"
+                      action="AdminPage/addVoice">
+                    <div class="one-row-filter">
+                        <div class="genre-filter input-filter">
+                            <h2 class="filter-section">Введите имя чтеца?</h2>
+                            <input type="text" class="genre-input filter-section"
+                                   th:field="*{voice_first_name}">
+                        </div>
+                        <div class="author-filter input-filter">
+                            <h2 class="filter-section">Введите фамилию чтеца?</h2>
+                            <input type="text" class="author-input filter-section"
+                                   th:field="*{voice_last_name}">
+                        </div>
+                        <div class="voice-filter input-filter">
+                            <h2 class="filter-section">Введите отчество чтеца?</h2>
+                            <input type="text" class="voice-input filter-section"
+                                   th:field="*{voice_middle_name}">
+                        </div>
+                    </div>
+                    <div class="btn-form">
+                        <button class="btn-find-book btn">Добавить чтеца</button>
+                    </div>
+                </form>
+            </section>
+
+            <!--delete book block-->
+            <section class="filter-panel">
+                <form method="post" th:object="${book}" class="filter-form" enctype="multipart/form-data">
+                    <div class="row-deleteblock">
+                        <div class="delete-book-block">
+                            <h2 class="filter-section">Введите название книги?</h2>
+                            <textarea type="text" class="delete-book-input filter-section" rows="1"></textarea>
+                            <div class="elastic-delete-block">
+                                <div class="elastic-el" th:each="book : ${books}"
+                                     th:title="${book.getId()}"
+                                     onclick="deleteBook(this)">
+                                    <div class="card-book">
+                                            <div class="card-book-avatar">
+                                                <img th:src="${book.getBookCoverPath()}"
+                                                     alt="example" class="img-avatar">
+                                            </div>
+                                            <div class="card-book-info">
+                                                <div class="card-name" th:text="${book.getBookName()}"></div>
+                                                <div th:text="${book.getBookCaption()}"></div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="select-genre"></ul>
+                        </div>
+                        <div class="btn-form">
+                            <button class="btn-find-book btn">Добавить книгу</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </section>
+        <div class="delete-book-res"></div>
+    </main>
+<script src="../../javaScripts/ScriptAdminPage.js"></script>
+</body>
+</html>
